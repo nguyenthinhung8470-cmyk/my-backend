@@ -22,6 +22,8 @@ app.post("/songs",(req,res)=>{
     res.json({message:"Song added"});
 });
 
-app.listen(3000,()=>{
-    console.log("Server running");
+const PORT = process.env.PORT || 3000;
+
+app.listen(PORT, ()=>{
+    console.log("Server running on " + PORT);
 });
