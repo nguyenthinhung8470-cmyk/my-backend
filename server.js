@@ -1,25 +1,14 @@
-const express = require("express")
-const cors = require("cors")
+const express = require("express");
+const app = express();
 
-const app = express()
+app.get("/", (req, res) => {
+  res.send("Backend is running 🚀");
+});
 
-app.use(cors())
-app.use(express.json())
+app.get("/api", (req, res) => {
+  res.json({ message: "Hello API" });
+});
 
-app.post("/contact",(req,res)=>{
-
-    const {name,email,message} = req.body
-
-    console.log("Name:",name)
-    console.log("Email:",email)
-    console.log("Message:",message)
-
-    res.json({
-        message:"Server đã nhận dữ liệu!"
-    })
-
-})
-
-app.listen(3000,()=>{
-    console.log("Server running at http://localhost:3000")
-})
+app.listen(3000, () => {
+  console.log("Server running");
+});
