@@ -1,18 +1,27 @@
 const express = require("express");
 const app = express();
 
-app.get("/", (req, res) => {
-  res.send("Hello Backend");
+app.use(express.json());
+
+// dữ liệu giả
+let songs = [
+    {id:1,name:"Song A",artist:"Artist A"},
+    {id:2,name:"Song B",artist:"Artist B"},
+    {id:3,name:"Song C",artist:"Artist C"}
+];
+
+// lấy danh sách bài hát
+app.get("/songs",(req,res)=>{
+    res.json(songs);
 });
 
-app.get("/users", (req, res) => {
-  res.json([
-    { id: 1, name: "An" },
-    { id: 2, name: "Binh" },
-    { id: 3, name: "Chi" }
-  ]);
+// thêm bài hát
+app.post("/songs",(req,res)=>{
+    const song = req.body;
+    songs.push(song);
+    res.json({message:"Song added"});
 });
 
-app.listen(3000, () => {
-  console.log("Server running");
+app.listen(3000,()=>{
+    console.log("Server running");
 });
